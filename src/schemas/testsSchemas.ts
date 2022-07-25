@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const newTest = Joi.object({
     name: Joi.string().trim().required(),
-    url: Joi.string().uri(),
+    pdfUrl: Joi.string().uri(),
     category: Joi.string().trim().required(),
     discipline: Joi.string().trim().required(),
     teacher: Joi.string().trim().required()

@@ -7,7 +7,7 @@ import termsRepository from "../repositories/termsRepository.js";
 
 export type TestInput = {
     name: string,
-    url: string,
+    pdfUrl: string,
     category: string,
     discipline: string,
     teacher: string
@@ -28,7 +28,7 @@ async function createTest(newTestInput: TestInput) {
 
     const newTest : TestCreateData = {
         name: newTestInput.name,
-        pdfUrl: newTestInput.url,
+        pdfUrl: newTestInput.pdfUrl,
         categoryId,
         teacherDisciplineId
     };
