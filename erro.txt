@@ -1,0 +1,60 @@
+-----> Building on the Heroku-20 stack
+-----> Determining which buildpack to use for this app
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_VERBOSE=false
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       
+-----> Installing binaries
+       engines.node (package.json):  unspecified
+       engines.npm (package.json):   unspecified (use default)
+       
+       Resolving node version 16.x...
+       Downloading and installing node 16.16.0...
+       Using default npm version: 8.11.0
+       
+-----> Installing dependencies
+       Installing node modules
+       
+       added 512 packages, and audited 513 packages in 28s
+       
+       42 packages are looking for funding
+         run `npm fund` for details
+       
+       found 0 vulnerabilities
+       
+-----> Build
+       Running build
+       
+       > repoprovas-backend@1.0.0 build
+       > tsc src/server.ts
+       
+       src/app.ts(1,8): error TS1259: Module '"/tmp/build_61604ba7/node_modules/@types/express/index"' can only be default-imported using the 'esModuleInterop' flag
+       src/app.ts(2,8): error TS1259: Module '"/tmp/build_61604ba7/node_modules/@types/cors/index"' can only be default-imported using the 'esModuleInterop' flag
+       src/config/database.ts(1,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/@prisma/client/index"' has no default export.
+       src/middlewares/authMiddleware.ts(1,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/@types/jsonwebtoken/index"' has no default export.
+       src/schemas/authSchemas.ts(1,8): error TS1259: Module '"/tmp/build_61604ba7/node_modules/joi/lib/index"' can only be default-imported using the 'esModuleInterop' flag
+       src/schemas/testsSchemas.ts(1,8): error TS1259: Module '"/tmp/build_61604ba7/node_modules/joi/lib/index"' can only be default-imported using the 'esModuleInterop' flag
+       src/services/authServices.ts(1,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/@types/bcrypt/index"' has no default export.
+       src/services/authServices.ts(2,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/@types/jsonwebtoken/index"' has no default export.
+       src/setup.ts(1,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/dotenv/lib/main"' has no default export.
+       src/utils/authUtils.ts(1,8): error TS1192: Module '"/tmp/build_61604ba7/node_modules/@types/bcrypt/index"' has no default export.
+-----> Build failed
+       
+       We're sorry this build is failing! You can troubleshoot common issues here:
+       https://devcenter.heroku.com/articles/troubleshooting-node-deploys
+       
+       Some possible problems:
+       
+       - Node version not specified in package.json
+         https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version
+       
+       Love,
+       Heroku
+       
+ !     Push rejected, failed to compile Node.js app.
+ !     Push failed
