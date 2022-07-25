@@ -26,3 +26,9 @@ export async function createNewTest(){
     
     return newTest;
 };
+
+export async function pickDiscipline(){
+    const disciplines = ["HTML e CSS", "JavaScript", "React", "Humildade", "Planejamento", "Autoconfiança"];
+    const randomDisc = Math.floor(Math.random()*disciplines.length);
+    return disciplines[randomDisc];
+};

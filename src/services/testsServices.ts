@@ -4,6 +4,7 @@ import teachersRepository from "./../repositories/teachersRepository.js";
 import disciplinesRepository from "./../repositories/disciplinesRepository.js";
 import teacherDisciplinesRepository from "./../repositories/teacherDisciplinesRepository.js";
 import termsRepository from "../repositories/termsRepository.js";
+import errorResponses from "../responses/errorResponses.js";
 
 export type TestInput = {
     name: string,
@@ -38,6 +39,10 @@ async function createTest(newTestInput: TestInput) {
 
 async function getTestsByDiscipline(disciplineName: string){
     const discipline = await disciplinesRepository.findDisciplineByName(disciplineName);
+    if (!discipline){
+        return errorResponses.notFound("Discipline");
+    }
+    
     const disciplineId = discipline.id;
     
     const termId = discipline.termId;
