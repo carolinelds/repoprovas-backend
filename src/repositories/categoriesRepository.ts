@@ -10,8 +10,13 @@ async function findCategoryByName(name: string){
     return category;
 };
 
+async function findCategories(){
+    return prisma.categories.findMany();
+}
+
 const categoriesRepository = {
-    findCategoryByName
+    findCategoryByName,
+    findCategories
 };
 
 export default categoriesRepository;

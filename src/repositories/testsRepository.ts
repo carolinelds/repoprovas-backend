@@ -9,8 +9,44 @@ async function addNewTest(newTest: TestCreateData){
     });
 }
 
+async function findByDiscipline(disciplineId: number){
+    const tests : any = await prisma.terms.findMany({
+        include: {
+            Disciplines: {
+                where: {
+                    id: disciplineId
+                },
+                select: {
+                    id: true,
+                    name: true,
+                    term: {},
+                    TeacherDisciplines: {
+                        select: {
+                            id: true,
+                            discipline: {},
+                            teacher: {},
+                            Tests: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    pdfUrl: true,
+                                    category: {}    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // tests[2].Disciplines[0].TeacherDisciplines[0].Tests
+    return tests;
+};
+
 const testsRepository = {
-    addNewTest
+    addNewTest,
+    findByDiscipline
 };
 
 export default testsRepository;

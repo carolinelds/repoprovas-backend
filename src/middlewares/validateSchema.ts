@@ -8,7 +8,7 @@ export default function validSchema(schema: any, errorMessageEntity: string) {
         const schemaBody: object = {};
 
         for (const key in body) {
-            if (typeof body[key] === "string" && key !== "url") {
+            if (typeof body[key] === "string" && key !== "pdfUrl") {
                 schemaBody[key] = stripHtml(body[key]).result.trim();
             } else {
                 schemaBody[key] = body[key];
