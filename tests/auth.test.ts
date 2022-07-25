@@ -70,7 +70,7 @@ describe("POST /user/signup", () => {
 });
 
 describe("POST /user/signin", () => {
-    it("given a registered email and password it should return 200", async () => {
+    it("given a registered email and password it should return 200 and valid token", async () => {
         const bodySignup = await createNewUser();
         await agent.post("/user/signup").send(bodySignup);
        
@@ -79,9 +79,14 @@ describe("POST /user/signin", () => {
             password: bodySignup.password
         };
         const result = await agent.post("/user/signin").send(bodySignin);
-        const status = result.status;
 
+        const status = result.status;
         expect(status).toEqual(200);
+
+        const token = result.text;
+        const regexJwt = /^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$/;
+        const validation = regexJwt.test(token);
+        expect(validation).toEqual(true);
     });
 
     it("given a registered email and invalid password it should return 422", async () => {
@@ -144,4 +149,4 @@ describe("POST /user/signin", () => {
 
 afterAll(async () => {
     await prisma.$disconnect();
-})
+});
